@@ -12,6 +12,7 @@ var ProductRow = React.createClass({
             <tr>
                 <td>{name}</td>
                 <td>{this.props.product.price}</td>
+                <td>{this.props.product.category}</td>
             </tr>
         );
     }
