@@ -2,15 +2,17 @@
 var React = require('react');
 
 var ProductTableHeader = React.createClass({
-	changeCriteria: function (e) {
-    this.props.onUserInput(e.target.dataset.sort);
+  changeCriteria: function (criteria) {
+    return function () {
+      this.props.onUserInput(criteria);
+    }.bind(this)
   },
 	render: function () {
 		return (
 			<tr>
-          <th data-sort="name" onClick={this.changeCriteria}>Name</th>
-          <th data-sort="price" onClick={this.changeCriteria}>Price</th>
-          <th data-sort="category" onClick={this.changeCriteria}>Category</th>
+          <th onClick={this.changeCriteria('name')}>Name</th>
+          <th onClick={this.changeCriteria('priceValue')}>Price</th>
+          <th onClick={this.changeCriteria('category')}>Category</th>
       </tr>
     );
 	}

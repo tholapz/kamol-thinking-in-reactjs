@@ -19,6 +19,10 @@ var ProductTable = React.createClass({
   render: function() {
     var filterText = this.props.filterText, inStockOnly = this.props.inStockOnly;
     var rows = _.chain(this.props.products)
+    .map(function(product) {
+      product.priceValue = Number(product.price.replace(/[^0-9\.]+/g,""));
+      return product;
+    })
     .sortBy(this.state.sortBy)
     .map(function(product) {
     	if (product.name.indexOf(filterText) === -1 || (!product.stocked && inStockOnly)) {
