@@ -8,11 +8,12 @@ var ProductTableHeader = React.createClass({
     }.bind(this)
   },
 	render: function () {
+    var arrow = this.props.order ? '↑' : '↓';
 		return (
 			<tr>
-          <th onClick={this.changeCriteria('name')}>Name</th>
-          <th onClick={this.changeCriteria('priceValue')}>Price</th>
-          <th onClick={this.changeCriteria('category')}>Category</th>
+          <th onClick={this.changeCriteria('name')}>Name{this.props.sortBy === 'name'? arrow: ''}</th>
+          <th onClick={this.changeCriteria('priceValue')}>Price{this.props.sortBy === 'priceValue'? arrow: ''}</th>
+          <th onClick={this.changeCriteria('category')}>Category{this.props.sortBy === 'category'? arrow: ''}</th>
       </tr>
     );
 	}

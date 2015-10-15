@@ -8,12 +8,18 @@ var _ = require('lodash');
 var ProductTable = React.createClass({
   getInitialState: function () {
     return {
-      sortBy: 'category'
+      sortBy: 'category',
+      prevSortBy: 'category',
+      order: true
     }
   },
 
   handleUserInput: function (criteria) {
-    this.setState({sortBy: criteria});
+    this.setState({
+      prevSortBy: this.state.sortBy,
+      sortBy: criteria,
+      order: this.state.prevSortBy === this.state.sortBy ? !this.state.order : true
+    });
   },
 
   render: function() {
@@ -23,7 +29,7 @@ var ProductTable = React.createClass({
       product.priceValue = Number(product.price.replace(/[^0-9\.]+/g,""));
       return product;
     })
-    .sortBy(this.state.sortBy)
+    .sortByOrder(this.state.sortBy, this.state.order ? 'asc' : 'desc')
     .map(function(product) {
     	if (product.name.indexOf(filterText) === -1 || (!product.stocked && inStockOnly)) {
     			return;
@@ -35,7 +41,10 @@ var ProductTable = React.createClass({
     return (
       <table>
         <thead>
-          <ProductTableHeader onUserInput={this.handleUserInput} />
+          <ProductTableHeader
+            onUserInput={this.handleUserInput}
+            sortBy={this.state.sortBy}
+            order={this.state.order} />
         </thead>
         <tbody>{rows}</tbody>
       </table>
