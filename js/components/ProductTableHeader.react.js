@@ -12,7 +12,7 @@ var ProductTableHeader = React.createClass({
 		return (
 			<tr>
           <th onClick={this.changeCriteria('name')}>Name{this.props.sortBy === 'name'? arrow: ''}</th>
-          <th onClick={this.changeCriteria('priceValue')}>Price{this.props.sortBy === 'priceValue'? arrow: ''}</th>
+          <th onClick={this.changeCriteria('price')}>Price{this.props.sortBy === 'price'? arrow: ''}</th>
           <th onClick={this.changeCriteria('category')}>Category{this.props.sortBy === 'category'? arrow: ''}</th>
       </tr>
     );

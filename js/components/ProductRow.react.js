@@ -11,7 +11,7 @@ var ProductRow = React.createClass({
         return (
             <tr>
                 <td>{name}</td>
-                <td>{this.props.product.price}</td>
+                <td style={{textAlign: 'right'}}>{this.props.product.price}</td>
                 <td>{this.props.product.category}</td>
             </tr>
         );
